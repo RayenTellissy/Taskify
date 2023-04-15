@@ -4,6 +4,9 @@ import remove from "../images/delete.png"
 import checkMark from "../images/checkMark.png"
 import edit from "../images/edit.png"
 import { motion } from "framer-motion";
+import axios from "axios";
+
+const url="https://jsonplaceholder.typicode.com/todos"
 
 
 const Todo=({id,title,completed,deleteData})=>{
@@ -12,6 +15,9 @@ const Todo=({id,title,completed,deleteData})=>{
   const isEditing=()=>{
     setEditing(!editing)
   }
+  useEffect(()=>{
+    axios.put(`${url}/${id}`,{completed: isCompleted})
+  },[isCompleted])
 
   return (
     <div id={id} className="main">
