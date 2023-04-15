@@ -12,6 +12,7 @@ const App = () => {
   const [user,setUser]=useState(window.location.search.substring(10))
   const [view,setView]=useState("allTodos")
   const [data,setData]=useState([])
+  const [searched,setSearched]=useState([])
 
   useEffect(()=>{
     axios.get(url).then(res=>setData(res.data))
@@ -19,6 +20,9 @@ const App = () => {
   
   const changeView=(str)=>{
     setView(str)
+  }
+  const search=(query)=>{
+    setSearched(data.filter(e=>e.title.includes(query)))
   }
   const updateData=(query)=>{
     setData(data.filter(e=>e.title.includes(query)))
@@ -31,7 +35,12 @@ const App = () => {
     if(view==="createTodo"){
       return <CreateTodo user={user}/>
     }
-    return <AllTodos data={data} deleteData={deleteData}/>
+    if(searched.length){
+      return <AllTodos data={searched} deleteData={deleteData}/>
+    }
+    else{
+      return <AllTodos data={data} deleteData={deleteData}/>
+    }
   }
 
   //animation
@@ -46,7 +55,7 @@ const App = () => {
           <h3>Create Todo</h3>
         </motion.div>
 
-        <motion.div whileHover={{scale: 1.1}} whileTap={{rotate: 360}} className={view!=="allTodos" ? "nav-unselected" : "nav-selected"} onClick={()=>changeView("allTodos")}>
+        <motion.div whileHover={{scale: 1.1}} whileTap={{rotate: 360}} className={view!=="allTodos" ? "nav-unselected" : "nav-selected"} onClick={()=>{changeView("allTodos"); setSearched([])}}>
           <h3>All Todos</h3>
         </motion.div>
 
@@ -54,7 +63,7 @@ const App = () => {
           <h3>Search</h3>
         </motion.div>
       </nav>
-      {view==="search" ? <Search updateData={updateData} view={view} changeView={changeView}/> : <></>}
+      {view==="search" ? <Search search={search} view={view} changeView={changeView}/> : <></>}
       {renderView()}
     </div>
   )
