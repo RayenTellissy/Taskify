@@ -1,7 +1,21 @@
-const express = require("express");
-const app = express();
-const port = process.env.PORT || 3001;
+const http = require('http');
 
-app.get("/", (req, res) => res.type('html').send(html));
+const server = http.createServer((req, res) => {
+  if (req.url === '/todos') {
+    // code to retrieve all the todos from the fake API
+    const todos = [
+      { id: 1, title: 'Todo 1', completed: false },
+      { id: 2, title: 'Todo 2', completed: true },
+      { id: 3, title: 'Todo 3', completed: false },
+    ]
+    res.setHeader('Content-Type', 'application/json');
+    res.end(JSON.stringify(todos));
+  } else {
+    res.end('Hello, World!');
+  }
+})
 
-app.listen(port, () => console.log(`app listening on port ${port}!`));
+const port = process.env.PORT || 3000
+server.listen(port, () => {
+  console.log(`Server is running on port ${port}`)
+})
