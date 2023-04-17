@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Todo-App</title>
+  </head>
+  <body>
+    <script>
+      if (!/(&|\?)username=/.test(window.location.search)) {
+        var search = window.location.search;
+        if (!/\?/.test(search)) {
+          search += '?';
+        }
+        if (search[search.length - 1] !== '?') {
+          search += '&';
+        }
+        search += 'username=' + (prompt('What is your name?') || 'anonymous');
+        window.location.search = search;
+      }
+    </script>
+    <div id="app"></div>
+    <script type="text/javascript" src="bundle.js"></script>
+  </body>
+</html>
