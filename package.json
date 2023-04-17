@@ -1,4 +1,8 @@
 {
+  "homepage": "http://rayentellissy.github.io/Taskify",
+  "repository": {
+    "url": "git+https://github.com/rayentellissy/Taskify.git"
+  },
   "name": "taskify",
   "version": "1.0.0",
   "description": "",
@@ -6,7 +10,9 @@
   "scripts": {
     "start": "webpack --mode=development --watch",
     "build": "webpack --mode=development",
-    "serve": "webpack serve --mode=development"
+    "serve": "webpack serve --mode=development",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "keywords": [],
   "author": "",

@@ -4,7 +4,7 @@ import Todo from "./Todo.jsx"
 
 const AllTodos=({data,deleteData})=>{
   return(
-    data.map((e,index)=>{
+    data.reverse().map((e,index)=>{
       return <Todo key={index} id={e.id} title={e.title} completed={e.completed} deleteData={deleteData}/>
     })
   )
