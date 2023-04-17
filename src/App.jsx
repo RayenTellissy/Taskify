@@ -6,7 +6,7 @@ import Search from "./components/Search.jsx";
 import CreateTodo from "./components/createTodo.jsx";
 
 
-const url="https://jsonplaceholder.typicode.com/todos"
+const url="https://taskifyapp.onrender.com/todos"
 
 const App = () => {
   const [user,setUser]=useState(window.location.search.substring(10))
@@ -23,9 +23,6 @@ const App = () => {
   }
   const search=(query)=>{
     setSearched(data.filter(e=>e.title.includes(query)))
-  }
-  const updateData=(query)=>{
-    setData(data.filter(e=>e.title.includes(query)))
   }
   const deleteData=(id)=>{
     axios.delete(`${url}/${id}`)

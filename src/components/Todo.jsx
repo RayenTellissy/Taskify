@@ -6,7 +6,7 @@ import edit from "../images/edit.png"
 import { motion } from "framer-motion";
 import axios from "axios";
 
-const url="https://jsonplaceholder.typicode.com/todos"
+const url="https://taskifyapp.onrender.com/todos"
 
 
 const Todo=({id,title,completed,deleteData})=>{
@@ -16,7 +16,7 @@ const Todo=({id,title,completed,deleteData})=>{
     setEditing(!editing)
   }
   useEffect(()=>{
-    axios.put(`${url}/${id}`,{completed: isCompleted})
+    axios.put(`${url}/${id}`,{title: title,completed: isCompleted})
   },[isCompleted])
 
   return (
@@ -30,7 +30,7 @@ const Todo=({id,title,completed,deleteData})=>{
           style={isCompleted===false ? {height: "50px", padding: "20px", cursor: "pointer"} : {height: "0px"}} 
           src={checkMark} onClick={()=>setCompleted(!isCompleted)}/>
         <motion.img whileHover={{opacity: 0.2}} style={{height: "50px", padding: "10px", cursor: "pointer"}} src={edit} onClick={()=>{isEditing()}}/>
-        <div style={{position: "absolute"}}>{editing && <UpdateTodo id={id} isEditing={isEditing}/>}</div>
+        <div style={{position: "absolute"}}>{editing && <UpdateTodo id={id} completed={completed} isEditing={isEditing}/>}</div>
       </div>
     </div>
   )

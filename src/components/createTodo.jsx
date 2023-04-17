@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion"
 import axios from "axios";
-const url="https://jsonplaceholder.typicode.com/todos"
+const url="https://taskifyapp.onrender.com/todos"
 
 const CreateTodo=({user})=>{
   const [todo,setTodo]=useState("")
@@ -9,7 +9,6 @@ const CreateTodo=({user})=>{
   const create=()=>{
     const newTodo={
       userId: user,
-      id: 1,
       title: todo,
       completed: false
     }

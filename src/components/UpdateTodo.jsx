@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion"
 import axios from "axios";
 import close from "../images/close.png"
-const url="https://jsonplaceholder.typicode.com/todos"
+const url="https://taskifyapp.onrender.com/todos"
 
-const UpdateTodo=({id,isEditing})=>{
+const UpdateTodo=({id,completed,isEditing})=>{
   const [title,setTitle]=useState("")
   const [isVisible,setIsVisible]=useState(true)
 
   const update=()=>{
-    axios.put(`${url}/${id}`,{title: title}).then(res=>console.log(res)).catch(err=>console.log(err))
+    axios.put(`${url}/${id}`,{title: title, completed}).then(res=>console.log(res)).catch(err=>console.log(err))
   }
 
   return (
